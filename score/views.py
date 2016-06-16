@@ -1,8 +1,15 @@
-from django.http import HttpResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import HighScore
+from .serializers import HighScoreSerializer
 
 
-# Create your views here.
-# Whenever user requests something views are going to return them same
+class ScoreList(APIView):
+    def get(self, request):
+        scores = HighScore.objects.all()
+        serializer = HighScoreSerializer(scores, many=True)
+        return Response(serializer.data)
 
-def index(request):
-    return HttpResponse("<h1>This is Rahul Yadav !</h1>")
+    def post(self):
+        pass
