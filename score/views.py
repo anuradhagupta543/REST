@@ -8,7 +8,7 @@ from .serializers import HighScoreSerializer
 class ScoreList(APIView):
     def get(self, request):
         print("GET method is requested !")
-        scores = HighScore.objects.all()
+        scores = HighScore.objects.order_by('-score')
         serializer = HighScoreSerializer(scores, many=True)
         return Response(serializer.data)
 
