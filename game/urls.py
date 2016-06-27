@@ -7,7 +7,8 @@ from score import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^scores/', views.ScoreList.as_view()),
+    url(r'^scores/', views.ScoreList.as_view(), name='scores'),
+    #  url(r'^scores/(?P<user_name>)/$', views.UpdateScore.as_view(), name='update'),
 ]
-
+# It will enable extension support.
 urlpatterns = format_suffix_patterns(urlpatterns)
